@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { isAutheticated } from "../auth/helper";
 import { StyledProduct } from "../components/styles/Product.styled";
 import { useStateContext } from "../context/StateContext";
 import { getProductById, getProductImageFromUrl } from "./helper/coreapicalls";
 
 const Product = () => {
+	const navigate = useNavigate();
+
 	const params = useParams();
 	const productId = params.productId;
 	const subCategoryId = params.subCategoryId;
@@ -36,9 +39,13 @@ const Product = () => {
 	};
 
 	const handleCheckout = async () => {
-		onAdd(product, qty);
+		if (isAutheticated()) {
+			onAdd(product, qty);
 
-		setShowCart(true);
+			setShowCart(true);
+		} else {
+			navigate("/auth/signin");
+		}
 	};
 
 	useEffect(() => {

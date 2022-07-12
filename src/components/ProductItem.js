@@ -45,7 +45,7 @@ const ProductItem = ({ product, categoryId, subCategoryId }) => {
 			<div className="product-description-container">
 				<div className="product-description">
 					<p className="product-name">{name}</p>
-					<p className="product-quantity">{`${quantity} ${unit}`}</p>
+					<p className="product-quantity">{`${unit}`}</p>
 				</div>
 				<div className="product-price-container">
 					<p className="product-price">

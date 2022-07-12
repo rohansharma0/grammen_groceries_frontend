@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { isAutheticated } from "../auth/helper";
 import Category from "../components/Category";
 import { StyledHome } from "../components/styles/Home.Styled";
 import { getAllCategories } from "./helper/coreapicalls";

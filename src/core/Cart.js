@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { StyledCart } from "../components/styles/Cart.styled";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 import {
@@ -14,8 +14,13 @@ import { TiDeleteOutline } from "react-icons/ti";
 
 import { useStateContext } from "../context/StateContext";
 import CartProductImage from "../components/CartProductImage";
+import { isAutheticated } from "../auth/helper";
+import getStripe from "./helper/getStripe";
+
+import { API } from "../backend";
 
 const Cart = () => {
+	const navigate = useNavigate();
 	const cartRef = useRef();
 
 	const {
@@ -26,6 +31,32 @@ const Cart = () => {
 		toggleCartItemQuanitity,
 		onRemove,
 	} = useStateContext();
+
+	const handlePay = async () => {
+		if (isAutheticated()) {
+			//pay with stripe
+
+			const response = await fetch(
+				`${API}/v1/auth/create-checkout-session`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(cartItems),
+				},
+			);
+
+			if (response.statusCode === 500) return;
+
+			const data = await response.json();
+
+			toast.loading("Redirecting...");
+			window.location.replace(data.sessionUrl);
+		} else {
+			navigate("/auth/signin");
+		}
+	};
 
 	return (
 		<StyledCart ref={cartRef}>
@@ -59,6 +90,7 @@ const Cart = () => {
 				)}
 
 				<div className="product-container">
+					{console.log(cartItems)}
 					{cartItems.length >= 1 &&
 						cartItems.map((item) => (
 							<div className="product" key={item.id}>
@@ -118,7 +150,11 @@ const Cart = () => {
 						</div>
 
 						<div className="btn-container">
-							<button type="button" className="btn">
+							<button
+								type="button"
+								className="btn"
+								onClick={handlePay}
+							>
 								Pay with Stripe
 							</button>
 						</div>

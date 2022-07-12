@@ -1,9 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { authenticate, signin } from "../auth/helper";
 import { AuthStyles } from "../components/styles/AuthStyles";
 
 const Signin = () => {
 	const navigate = useNavigate();
+
+	const [user, setUser] = useState({
+		email: "",
+		password: "",
+		error: "",
+		success: false,
+	});
+
+	const { email, password, error, success } = user;
+
+	const handleChange = (name) => (event) => {
+		setUser({ ...user, error: false, [name]: event.target.value });
+	};
+
+	const onSubmit = (e) => {
+		e.preventDefault();
+		setUser({ ...user, error: false });
+		//get token
+		signin({ email, password })
+			.then((data) => {
+				if (data.error) {
+					setUser({ ...user, error: data.error, success: false });
+					console.log("cannot signin", data.error);
+				} else {
+					setUser({
+						...user,
+						email: "",
+						password: "",
+						error: "",
+						success: true,
+					});
+					//store in memory
+					authenticate(data, () => {
+						// redirect to home page
+
+						navigate(-1);
+					});
+					console.log(data);
+				}
+			})
+			.catch((e) => {
+				console.log(e);
+			});
+	};
 
 	return (
 		<AuthStyles>
@@ -16,7 +61,7 @@ const Signin = () => {
 					<span>Back to store</span>
 				</div>
 			</div>
-			<form className="form-container">
+			<form method="POST" className="form-container">
 				<p className="form-title">Hello ! Welcome back.</p>
 				<p className="form-description">
 					Login in with your details that you entered during your
@@ -28,6 +73,8 @@ const Signin = () => {
 					placeholder="Email"
 					required
 					className="form-input"
+					onChange={handleChange("email")}
+					value={email}
 				/>
 				<input
 					type="password"
@@ -35,6 +82,8 @@ const Signin = () => {
 					placeholder="Password"
 					required
 					className="form-input"
+					onChange={handleChange("password")}
+					value={password}
 				/>
 				<div className="form-info-container">
 					<div className="form-info-radio-container">
@@ -45,7 +94,9 @@ const Signin = () => {
 						Forgot password?
 					</Link>
 				</div>
-				<button className="form-btn">Sign in</button>
+				<button className="form-btn" onClick={onSubmit}>
+					Sign in
+				</button>
 				<div className="form-footer-container">
 					<p className="form-footer-text">Not a member yet?</p>
 					<Link to="/auth/signup" className="form-footer-link">

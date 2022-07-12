@@ -2,12 +2,26 @@ import { API } from "../../backend";
 
 export const signup = async (user) => {
 	try {
-		const response = await fetch(`${API}/v1/auth/register`, {
+		console.log(user);
+		const res = await fetch(`${API}/v1/auth/register`, {
 			method: "POST",
 			headers: {
-				Accept: "application/json",
 				"Content-Type": "application/json",
-				"Access-Control-Allow-Origin": "http://localhost:3000",
+			},
+			body: JSON.stringify(user),
+		});
+		return await res.json();
+	} catch (err) {
+		return console.log(err);
+	}
+};
+
+export const signin = async (user) => {
+	try {
+		const response = await fetch(`${API}/v1/auth/login`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(user),
 		});
@@ -17,21 +31,6 @@ export const signup = async (user) => {
 	}
 };
 
-export const signin = (user) => {
-	return fetch(`${API}/signin`, {
-		method: "POST",
-		headers: {
-			Accept: "application/json",
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(user),
-	})
-		.then((response) => {
-			return response.json();
-		})
-		.catch((err) => console.log(err));
-};
-
 export const authenticate = (data, next) => {
 	if (typeof window !== "undefined") {
 		localStorage.setItem("jwt", JSON.stringify(data));
@@ -39,14 +38,9 @@ export const authenticate = (data, next) => {
 	}
 };
 
-export const signout = (next) => {
+export const signout = () => {
 	if (typeof window !== "undefined") {
 		localStorage.removeItem("jwt");
-		next();
-
-		return fetch(`${API}/signout`, {
-			method: "GET",
-		}).catch((err) => console.log(err));
 	}
 };
 

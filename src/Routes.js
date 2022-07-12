@@ -13,6 +13,9 @@ import Reset from "./user/Reset";
 import Signin from "./user/Signin";
 import Signup from "./user/Signup";
 import UserDashBoard from "./user/UserDashBoard";
+import PaymentSuccess from "./core/PaymentSuccess";
+import PaymentFailed from "./core/PaymentFailed";
+import PageNotFound from "./core/PageNotFound";
 
 const CustomRoutes = () => {
 	return (
@@ -22,6 +25,11 @@ const CustomRoutes = () => {
 				<Toaster />
 				<Navbar />
 				<Routes>
+					<Route path="/payment/failed" element={<PaymentFailed />} />
+					<Route
+						path="/payment/success"
+						element={<PaymentSuccess />}
+					/>
 					<Route path="/auth/signin" element={<Signin />} />
 					<Route path="/auth/signup" element={<Signup />} />
 					<Route path="/auth/reset" element={<Reset />} />
@@ -36,6 +44,7 @@ const CustomRoutes = () => {
 					/
 					<Route path="/profile" element={<UserDashBoard />} />
 					<Route path="/" element={<Home />} />
+					<Route path="*" element={<PageNotFound />} />
 				</Routes>
 			</BrowserRouter>
 		</StateContext>

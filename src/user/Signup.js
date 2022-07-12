@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signup } from "../auth/helper";
+import { authenticate, signin, signup } from "../auth/helper";
 import { AuthStyles } from "../components/styles/AuthStyles";
 
 const Signup = () => {
@@ -22,28 +22,47 @@ const Signup = () => {
 	};
 
 	const onSubmit = (event) => {
-		// event.preventDefault();
-		// setUser({ ...user, error: false });
-		// signup({ email: email, password: password })
-		// 	.then((data) => {
-		// 		if (data.error) {
-		// 			setUser({ ...user, error: data.error, success: false });
-		// 			console.log("10");
-		// 		} else {
-		// 			setUser({
-		// 				...user,
-		// 				firstName: "",
-		// 				lastName: "",
-		// 				email: "",
-		// 				password: "",
-		// 				error: "",
-		// 				success: true,
-		// 			});
-		// 		}
-		// 	})
-		// 	.catch((e) => {
-		// 		console.log(e);
-		// 	});
+		event.preventDefault();
+		setUser({ ...user, error: false });
+		signup({ firstName, lastName, email, password })
+			.then((data) => {
+				if (data.error) {
+					setUser({ ...user, error: data.error, success: false });
+					console.log(data);
+				} else {
+					setUser({
+						...user,
+						firstName: "",
+						lastName: "",
+						email: "",
+						password: "",
+						error: "",
+						success: true,
+					});
+				}
+
+				//get token
+				signin({ email, password })
+					.then((data) => {
+						if (data.error) {
+							console.log("cannot signin", data.error);
+						} else {
+							//store in memory
+							authenticate(data, () => {
+								// redirect to home page
+
+								navigate(-2);
+							});
+							console.log(data);
+						}
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			})
+			.catch((e) => {
+				console.log(e);
+			});
 	};
 
 	return (
@@ -57,7 +76,7 @@ const Signup = () => {
 					<span>Back to store</span>
 				</div>
 			</div>
-			<form className="form-container">
+			<form method="POST" className="form-container">
 				<p className="form-title">
 					Create an account and discover the benefits.
 				</p>
@@ -111,6 +130,7 @@ const Signup = () => {
 				<button className="form-btn" onClick={onSubmit}>
 					Sign up
 				</button>
+				{user.firstName}
 				<div className="form-footer-container">
 					<p className="form-footer-text">
 						Are you already a member?

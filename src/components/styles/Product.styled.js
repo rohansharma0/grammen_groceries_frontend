@@ -121,6 +121,7 @@ export const StyledProduct = styled.div`
 				color: #000;
 				background-color: #ffd93e;
 				padding: 1rem;
+				cursor: pointer;
 			}
 
 			.buy-btn {
@@ -129,6 +130,7 @@ export const StyledProduct = styled.div`
 				color: #000;
 				background-color: #ffd93e;
 				padding: 1rem;
+				cursor: pointer;
 			}
 		}
 
