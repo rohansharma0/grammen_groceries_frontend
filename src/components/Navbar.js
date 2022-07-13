@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { StyledNavber } from "./styles/Navbar.styled";
 import { AiOutlineShopping } from "react-icons/ai";
+import { CgProfile } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 import Logo from "../static/images/logo.png";
 import SearchLogo from "../static/images/search.png";
@@ -41,7 +42,10 @@ const Navbar = () => {
 					<AiOutlineShopping />
 					<span className="cart-item-qty">{totalQuantities}</span>
 				</button>
-				<img src={UserLogo} alt="user" onClick={handleOnClickProfile} />
+				<CgProfile
+					className="cart-icon"
+					onClick={handleOnClickProfile}
+				/>
 			</div>
 			{showCart && <Cart />}
 		</StyledNavber>

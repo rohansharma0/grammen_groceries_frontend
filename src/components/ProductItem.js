@@ -5,14 +5,7 @@ import { useNavigate } from "react-router-dom";
 const ProductItem = ({ product, categoryId, subCategoryId }) => {
 	let navigate = useNavigate();
 
-	const { id, name, quantity, unit, price, discountPercentage, imageUrl } =
-		product;
-
-	const calculatePrice = (price, discountPercentage) => {
-		return parseFloat(price - (price * discountPercentage) / 100).toFixed(
-			2,
-		);
-	};
+	const { id, name, actualPrice, unit, price, imageUrl } = product;
 
 	const [imageurl, setImageUrl] = useState();
 	const [error, setError] = useState(false);
@@ -48,11 +41,9 @@ const ProductItem = ({ product, categoryId, subCategoryId }) => {
 					<p className="product-quantity">{`${unit}`}</p>
 				</div>
 				<div className="product-price-container">
-					<p className="product-price">
-						₹{calculatePrice(price, discountPercentage)}
-					</p>
+					<p className="product-price">₹{price}</p>
 					<p className="product-actual-price">
-						<s>₹{price}</s>
+						<s>₹{actualPrice}</s>
 					</p>
 				</div>
 			</div>

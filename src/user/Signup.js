@@ -119,7 +119,7 @@ const Signup = () => {
 				/>
 				<div className="form-info-container">
 					<div className="form-info-radio-container">
-						<input type="radio" className="form-info-radio" />
+						<input type="radio" Name="form-info-radio" />
 						<p className="form-info-text">
 							I argree to all the Terms and Conditions and Privacy
 							Policy.
@@ -130,7 +130,6 @@ const Signup = () => {
 				<button className="form-btn" onClick={onSubmit}>
 					Sign up
 				</button>
-				{user.firstName}
 				<div className="form-footer-container">
 					<p className="form-footer-text">
 						Are you already a member?

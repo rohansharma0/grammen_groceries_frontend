@@ -27,7 +27,6 @@ const Signin = () => {
 			.then((data) => {
 				if (data.error) {
 					setUser({ ...user, error: data.error, success: false });
-					console.log("cannot signin", data.error);
 				} else {
 					setUser({
 						...user,
@@ -57,7 +56,7 @@ const Signin = () => {
 					onClick={() => navigate(-1)}
 					className="navigate-button-btn"
 				>
-					<div class="arrow-left icon"></div>
+					<div className="arrow-left icon"></div>
 					<span>Back to store</span>
 				</div>
 			</div>

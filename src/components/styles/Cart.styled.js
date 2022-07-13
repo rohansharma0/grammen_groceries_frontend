@@ -35,7 +35,7 @@ export const StyledCart = styled.div`
 	}
 	.cart-num-items {
 		margin-left: 10px;
-		color: #f02d34;
+		color: #fbb03b;
 	}
 	.empty-cart {
 		margin: 40px;
@@ -116,7 +116,7 @@ export const StyledCart = styled.div`
 		margin-top: 10px;
 		margin-top: 40px;
 		text-transform: uppercase;
-		background-color: #f02d34;
+		background-color: #fbb03b;
 		color: #fff;
 		cursor: pointer;
 		transform: scale(1, 1);

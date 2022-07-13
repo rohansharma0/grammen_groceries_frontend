@@ -9,12 +9,13 @@ export const StyledNavber = styled.div`
 
 	.cart-icon {
 		font-size: 25px;
-		color: gray;
+		color: #000;
 		cursor: pointer;
 		position: relative;
 		transition: transform 0.4s ease;
 		border: none;
 		background-color: transparent;
+		margin: 0.5rem;
 	}
 	.cart-icon:hover {
 		transform: scale(1.1, 1.1);
@@ -24,8 +25,9 @@ export const StyledNavber = styled.div`
 		right: -8px;
 		font-size: 12px;
 		color: #eee;
-		background-color: #f02d34;
+		background-color: #fbb03b;
 		width: 18px;
+		color: #000;
 		height: 18px;
 		border-radius: 50%;
 		text-align: center;
@@ -33,15 +35,13 @@ export const StyledNavber = styled.div`
 	}
 	.logo-container {
 		img {
-			width: 70%;
+			width: 100%;
 		}
 	}
 
 	.nav-links {
-		img {
-			width: 25px;
-			margin: 0 0.5rem;
-			cursor: pointer;
-		}
+		display: flex;
+		justify-content: center;
+		align-items: baseline;
 	}
 `;
