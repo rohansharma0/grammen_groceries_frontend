@@ -1,70 +1,76 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Logo](https://raw.githubusercontent.com/rohansharma0/grammen_groceries_frontend/master/src/static/images/logo.png)
 
-## Available Scripts
 
-In the project directory, you can run:
+# Grameen Groceries 
+The Grameen Groceries is an E-grocery system that meets a number of consumer needs including providing products for niche markets or helping the time starved consumer shop for the daily or weekly groceries. 
+## 🛠 Tools
+Spring Boot, React, MySql, Java and Javascript
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 👥 Authors
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Rohan Sharma - 2136388](https://github.com/rohansharma0)
+- [Ritesh Raman - 2136396](https://github.com/RiteshRaman07)
+- [Safia Akbar - 2136385](https://github.com/safia04)
+- [Shalini Shaw - 2136394](https://github.com/shawshalini)
+- [Swaraj Khan - 2136428](https://github.com/first-phoenix/)
+- [Parichita Joarder - 2136408](https://github.com/Parichita123)
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Signin / Signup using JWT 
+- Buy Products
+- Stripe Payment Gateway 
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Screenshots
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Home Page
+![Home](https://github.com/rohansharma0/grammen_groceries_frontend/blob/master/src/static/images/homepage.png?raw=true)
 
-### `npm run eject`
+- Category Page
+![Login](https://github.com/rohansharma0/grammen_groceries_frontend/blob/master/src/static/images/categorypage.png?raw=true)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Product Page
+![Login](https://github.com/rohansharma0/grammen_groceries_frontend/blob/master/src/static/images/productpage.png?raw=true)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Cart Page
+![Login](https://github.com/rohansharma0/grammen_groceries_frontend/blob/master/src/static/images/cartPage.png?raw=true)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Signin Page
+![Signin](https://github.com/rohansharma0/grammen_groceries_frontend/blob/master/src/static/images/login.png?raw=true)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Signup Page
+![Signup](https://github.com/rohansharma0/grammen_groceries_frontend/blob/master/src/static/images/signup.png?raw=true)
 
-## Learn More
+## Project Running 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To run Project , run the following commands
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1- To run Backend
+   
+```bash
+  cd ./GrameenGroceriesBackend
+  edit and add mysql config to application-dev.properties
+  run maven Project from Eclipse or Intellij
+```
 
-### Code Splitting
+2- To run Frontend
+   
+```bash
+  cd ./GrameenGroceriesFrontend
+  npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## Environment Variables
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+To run this project, you will need to add the following environment variables to your .env file
 
-### Making a Progressive Web App
+- `REACT_APP_BACKEND`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- `PUBLIC_STRIPE_PUBLISHABLE_KEY`
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `PUBLIC_STRIPE_SECRET_KEY`
