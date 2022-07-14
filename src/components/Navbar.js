@@ -5,9 +5,6 @@ import { AiOutlineShopping } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 import Logo from "../static/images/logo.png";
-import SearchLogo from "../static/images/search.png";
-import UserLogo from "../static/images/user.png";
-import CartLogo from "../static/images/cart.png";
 import Cart from "../core/Cart";
 import { useStateContext } from "../context/StateContext";
 
